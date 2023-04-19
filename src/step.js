@@ -5,4 +5,7 @@
  * 3. set context value
  * 4. to access the value use useContext hook .
  * 
+ * create AuthProvider 
+ * set createContext
+ * 
  * */ 

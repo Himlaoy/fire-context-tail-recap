@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProviders';
 
 const Login = () => {
+    const [error, setError] = useState()
+    const [success, setSuccess] = useState()
 
+    const {signIn} = useContext(AuthContext)
+    
 
     const handleSubmit=(event)=>{
         event.preventDefault()
@@ -11,6 +16,20 @@ const Login = () => {
         const password = form.password.value
     
         console.log(email, password)
+
+        signIn(email, password)
+        .then(result=>{
+            const loggedUser = result.user
+            console.log(loggedUser)
+            
+            setSuccess('login success')
+            setError('')
+
+        })
+        .catch(error=>{
+            console.log(error.message)
+            setError(error.message)
+        })
 
 
     }
@@ -44,6 +63,8 @@ const Login = () => {
                     <div className='mx-2 mb-2'>
                         <Link to="/register" className="label-text-alt link link-hover text-xl ">Don't have account? Please Register </Link>
                     </div>
+                    <p className='text-xl ms-2 mb-1 text-emerald-500'>{success}</p>
+                    <p className='text-xl ms-2 mb-1 text-red-500'>{error}</p>
                 </div>
 
             </div>
