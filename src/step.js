@@ -8,4 +8,6 @@
  * create AuthProvider 
  * set createContext
  * 
+ * create useEffect having onAuthStateChanged to hold user name 
+ * 
  * */ 
